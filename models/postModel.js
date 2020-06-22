@@ -6,6 +6,7 @@ const postSchema = mongoose.Schema({
   image: { type: String, required: [true, "Upload an image"] },
   time: { type: Date },
   postedBy: { type: ObjectId, ref: "User" },
+  username: { type: String, required: [true, "Username required"] },
 });
 
 postSchema.pre("save", function (next) {
