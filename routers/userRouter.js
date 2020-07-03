@@ -1,6 +1,9 @@
 const express = require("express");
 const { protect } = require("../middleware");
-const { getUserByUserName } = require("../controllers/userController");
+const {
+  getUserByUserName,
+  updateUser,
+} = require("../controllers/userController");
 const { signup, login } = require("../controllers/authController");
 
 const userRouter = express.Router();
@@ -16,6 +19,6 @@ userRouter.post("/loggedIn", protect, (req, res) => {
 });
 
 userRouter.route("/").get(protect, allUsers);
-userRouter.route("/:user").get(getUserByUserName);
+userRouter.route("/:user").get(getUserByUserName).put(protect, updateUser);
 
 module.exports = userRouter;

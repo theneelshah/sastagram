@@ -16,10 +16,13 @@ const userSchema = mongoose.Schema({
     required: [true, "Password is required"],
   },
   time: { type: Date },
+  profilePicture: { type: String },
 });
 
 userSchema.pre("save", function (next) {
   this.time = Date.now();
+  this.profilePicture =
+    "https://res.cloudinary.com/sastagram/image/upload/v1593768176/user-profile-pngrepo-com_z6yhex.png";
   next();
 });
 

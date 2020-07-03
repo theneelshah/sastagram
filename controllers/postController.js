@@ -1,5 +1,6 @@
 const Post = require("../models/postModel");
 const catchAsync = require("../utils/catchAsync");
+const User = require("../models/userModel");
 
 exports.allUserPost = catchAsync(async (req, res, next) => {
   const { id } = req.params;
@@ -7,7 +8,11 @@ exports.allUserPost = catchAsync(async (req, res, next) => {
     .populate("postedBy", "-__v -password -time")
     .select("-__v")
     .sort("-time");
-  res.status(200).json({ status: "OK", message: "Posts Received", posts });
+  const user = await User.find({ name: id });
+  const { profilePicture } = user[0];
+  res
+    .status(200)
+    .json({ status: "OK", message: "Posts Received", posts, profilePicture });
 });
 
 exports.allPosts = catchAsync(async (req, res, next) => {
