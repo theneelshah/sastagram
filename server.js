@@ -1,13 +1,14 @@
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
+const express = require("express");
 const app = require("./app");
 
 dotenv.config();
 
 const MongoURI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 4546;
-const HOST = process.env.HOST || "127.0.0.1";
+// const HOST = process.env.HOST || "127.0.0.1";
 
 mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -26,8 +27,8 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const server = app.listen(PORT, HOST, () => {
-  console.log(`Server running on:- http://${HOST}:${PORT}`);
+const server = app.listen(PORT, () => {
+  console.log("Server Running");
 });
 
 process.on("unhandledRejection", (error) => {

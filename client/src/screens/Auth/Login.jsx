@@ -56,7 +56,7 @@ class Login extends Component {
     const { email, password } = this.state;
     this.setState({ isLoading: true });
     await axios
-      .post("http://127.0.0.1:4546/api/v1/user/login", {
+      .post("/api/v1/user/login", {
         email,
         password,
       })
