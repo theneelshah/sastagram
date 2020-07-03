@@ -1,4 +1,5 @@
 node_modules/
-client/
+client/node_modules/
+client/build/
 user.js
 .env
