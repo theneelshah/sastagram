@@ -10,7 +10,7 @@ import {
   Img,
   PictureHolder,
   ProfileDetails,
-  ProfilePicture,
+  ProfilePicture
 } from "./styles";
 
 class Profile extends Component {
@@ -45,7 +45,7 @@ class Profile extends Component {
     const id = localStorage.getItem("id");
     const { profileName } = this.state;
     await axios
-      .get(`http://127.0.0.1:4546/api/v1/post/user/${profileName}`)
+      .get(`/api/v1/post/user/${profileName}`)
       .then((res) => {
         console.log(res);
         const { status, data } = res;
@@ -110,7 +110,7 @@ class Profile extends Component {
         const { profileName } = this.state;
         await axios
           .put(
-            `http://127.0.0.1:4546/api/v1/user/${profileName}`,
+            `/api/v1/user/${profileName}`,
             {
               profilePicture: url,
             },

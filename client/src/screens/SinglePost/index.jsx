@@ -13,7 +13,7 @@ class SinglePost extends Component {
   async componentDidMount() {
     const id = window.location.href.split("/")[4];
     console.log(id);
-    await axios.get(`http://127.0.0.1:4546/api/v1/post/${id}`).then((res) => {
+    await axios.get(`/api/v1/post/${id}`).then((res) => {
       const { data } = res;
       const { caption, image, time, username } = data.post;
       this.setState({ caption, image, username, time }, () => {

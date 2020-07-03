@@ -58,7 +58,7 @@ class Signup extends Component {
     });
     await axios
       .post(
-        "http://127.0.0.1:4546/api/v1/user/signup",
+        "/api/v1/user/signup",
         { name: name.toLowerCase(), email, password },
         { headers }
       )

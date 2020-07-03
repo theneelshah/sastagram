@@ -16,7 +16,7 @@ const validateLogin = async () => {
     Authorization: `Bearer: ${getToken()}`,
   };
   await axios
-    .post("http://127.0.0.1:4546/api/v1/user/loggedIn", {}, { headers })
+    .post("/api/v1/user/loggedIn", {}, { headers })
     .then((res) => {
       if (res.status === 200) return true;
     })

@@ -35,21 +35,18 @@ export default class Explore extends Component {
     };
     this.setState({ isLoading: true });
 
-    await axios
-      .get(`http://127.0.0.1:4546/api/v1/post?page=${page}`, { headers })
-      .then((result) => {
-        this.setState({ isLoading: false }, () => {
-          let { posts } = this.state;
-          posts = posts.concat(result.data.posts);
-          // console.log(posts);
-          this.setState({ posts, totalPosts: posts.length }, () => {
-            this.setState({ page: this.state.page + 1 });
-            if (result.data.posts.length === 9)
-              this.setState({ hasMore: true });
-            else this.setState({ hasMore: false });
-          });
+    await axios.get(`/api/v1/post?page=${page}`, { headers }).then((result) => {
+      this.setState({ isLoading: false }, () => {
+        let { posts } = this.state;
+        posts = posts.concat(result.data.posts);
+        // console.log(posts);
+        this.setState({ posts, totalPosts: posts.length }, () => {
+          this.setState({ page: this.state.page + 1 });
+          if (result.data.posts.length === 9) this.setState({ hasMore: true });
+          else this.setState({ hasMore: false });
         });
       });
+    });
   };
 
   onPostClick = (e) => {

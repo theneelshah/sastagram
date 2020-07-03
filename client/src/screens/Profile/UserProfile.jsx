@@ -42,7 +42,7 @@ export default class UserProfile extends Component {
 
   getUserByUsername = async (username) => {
     await axios
-      .get(`http://127.0.0.1:4546/api/v1/user/${username}`)
+      .get(`/api/v1/user/${username}`)
       .then((res) => {
         const { user } = res.data;
         console.log(user);

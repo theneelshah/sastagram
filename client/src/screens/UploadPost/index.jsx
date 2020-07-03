@@ -68,7 +68,7 @@ export default class UploadPost extends Component {
 
         await axios
           .post(
-            "http://127.0.0.1:4546/api/v1/post",
+            "/api/v1/post",
             {
               caption,
               image: url,
