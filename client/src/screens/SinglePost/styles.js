@@ -3,6 +3,13 @@ import styled from "styled-components";
 export const Post = styled.div`
   width: 100%;
   height: 20rem;
+  a {
+    color: black;
+    transition: color 0.15s ease-in;
+    &:hover {
+      color: #a7a7a7;
+    }
+  }
 `;
 
 export const Image = styled.div`

@@ -77,7 +77,7 @@ export default class UploadPost extends Component {
           )
           .then((result) => {
             console.log(result.data);
-            window.location.href = "http://localhost:3000/profile";
+            window.location.href = "/profile";
           })
           .catch((error) => {
             console.log(error.response);

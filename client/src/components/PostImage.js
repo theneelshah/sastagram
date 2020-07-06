@@ -25,9 +25,17 @@ export const Post = styled.div`
 
   padding: 0.1rem;
   /* border: 1px solid #757575; */
-  cursor: pointer;
 
   background: white;
+
+  .username {
+    height: fit-content;
+    transition: color 0.15s ease-in;
+    &:hover {
+      color: #a7a7a7;
+    }
+  }
+
   @media only screen and (max-width: 991px) {
     height: 175px;
   }
@@ -38,7 +46,7 @@ export const Post = styled.div`
 
 export const PostImage = styled.div`
   width: 75%;
-  height: ${(props) => (props.profile ? "100%" : "75%")};
+  height: ${(props) => (props.profile ? "100%" : "85%")};
   margin: 0 auto;
   background: url(${(props) => props.image});
   background-repeat: no-repeat;

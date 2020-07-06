@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getToken } from "../../auth";
 import {
   Post,
@@ -49,19 +49,14 @@ export default class Explore extends Component {
     });
   };
 
-  onPostClick = (e) => {
-    const redirectTo = e.target.parentElement.getAttribute("data-open");
-    this.setState({ redirectTo });
-  };
-
   render() {
-    const { isLoading, posts, hasMore, totalPosts, redirectTo } = this.state;
-
-    if (redirectTo) return <Redirect to={`/p/${redirectTo}`} />;
+    const { isLoading, posts, hasMore, totalPosts } = this.state;
 
     return (
       <div>
         <h1>Explore Page</h1>
+
+        {isLoading && <Loading> Loading.. </Loading>}
 
         {posts.length > 1 && (
           <InfiniteScroll
@@ -69,7 +64,7 @@ export default class Explore extends Component {
             hasMore={hasMore}
             next={this.fetchData}
             loader={<Loading> Loading... </Loading>}
-            endMessage={<Loading> Done </Loading>}
+            endMessage={<Loading> All posts done. </Loading>}
           >
             <Posts>
               {posts.map((el) => {
@@ -77,8 +72,14 @@ export default class Explore extends Component {
 
                 return (
                   <Post key={_id}>
-                    <Link target="_blank" to={`/p/${_id}`}>
+                    <Link
+                      target="_blank"
+                      className="username"
+                      to={`/user/${username}`}
+                    >
                       <PostTitle> {username} </PostTitle>
+                    </Link>
+                    <Link target="_blank" to={`/p/${_id}`}>
                       <PostImage image={image} />
                       <PostCaption>{caption}</PostCaption>
                     </Link>

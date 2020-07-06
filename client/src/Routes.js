@@ -5,6 +5,7 @@ import { getToken, isLoggedIn, logout } from "./auth";
 import Login from "./screens/Auth/Login";
 import Signup from "./screens/Auth/Signup";
 import Explore from "./screens/Explore";
+import NotLoggedInHome from "./screens/Home/NotLoggedInHome.jsx";
 import Profile from "./screens/Profile/Profile";
 import UserProfile from "./screens/Profile/UserProfile";
 import SinglePost from "./screens/SinglePost";
@@ -54,12 +55,6 @@ const Routes = () => {
     </Switch>
   );
 };
-
-const NotLoggedInHome = () => (
-  <div>
-    <h1>Go TO Login</h1>
-  </div>
-);
 
 const Error404 = () => (
   <div>

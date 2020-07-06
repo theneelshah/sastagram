@@ -50,7 +50,7 @@ export default class UserProfile extends Component {
       })
       .catch((err) => {
         const { status } = err.response;
-        window.location.href = "http://localhost:3000/user-not-found";
+        window.location.href = "/user-not-found";
         // console.log("called");
         // return null;
       });

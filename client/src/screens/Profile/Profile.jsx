@@ -10,7 +10,7 @@ import {
   Img,
   PictureHolder,
   ProfileDetails,
-  ProfilePicture
+  ProfilePicture,
 } from "./styles";
 
 class Profile extends Component {
