@@ -26,7 +26,7 @@
 
 ```
 $ cd <project-destination>
-$ git clone https://github.com/theneelshah/sastagram-server.git
+$ git clone https://github.com/theneelshah/sastagram.git
 ```
 
 ---
@@ -35,8 +35,8 @@ $ git clone https://github.com/theneelshah/sastagram-server.git
 Create a **.env** file in the **home directory** with the following variables:
 
 1. MONGO*URI=<\_Your mongodb database [uri](https://docs.mongodb.com/manual/reference/connection-string/)*>
-1. JWT*SECRET=<\_Random string used to encrypt your JWT token for authentication. Ex: **MY_SECRET_AND_ENCRYPTED_STRING***>
-1. JWT_EXPIRES_IN=<_Time after your token expires. Ex: **2d** _>
+1. JWT\*SECRET=<\_Random string used to encrypt your JWT token for authentication. Ex: **MY_SECRET_AND_ENCRYPTED_STRING\***>
+1. JWT*EXPIRES_IN=<\_Time after your token expires. Ex: **2d** *>
 1. NODE_ENV=<**\*development** / production\*>
 
 ---
