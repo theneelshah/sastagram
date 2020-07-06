@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import { getToken, isLoggedIn, logout } from "./auth";
 import Login from "./screens/Auth/Login";
 import Signup from "./screens/Auth/Signup";
@@ -70,7 +70,20 @@ const Error404LoggedIn = () => (
 
 const Home = () => (
   <div>
-    <h1>Home</h1>
+    <h1>
+      It'll be appreciated if you'd tell me if the site has bug. Also, check
+      responsiveness
+    </h1>
+    <hr />
+    <div>
+      <h1>Go to:</h1>
+      <p>
+        <Link to="/explore">Explore</Link>
+      </p>
+      <p>
+        <Link to="/profile">Profile</Link>
+      </p>
+    </div>
   </div>
 );
 

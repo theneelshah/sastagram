@@ -23,6 +23,7 @@ class Profile extends Component {
     profilePicture: "",
     imageError: false,
     isLoading: false,
+    isLoadingProfile: false,
   };
 
   componentWillMount() {
@@ -44,15 +45,21 @@ class Profile extends Component {
   getPosts = async () => {
     const id = localStorage.getItem("id");
     const { profileName } = this.state;
+    this.setState({ isLoadingProfile: true });
     await axios
       .get(`/api/v1/post/user/${profileName}`)
       .then((res) => {
         console.log(res);
         const { status, data } = res;
         const { posts, profilePicture } = data;
-        this.setState({ posts, profilePicture: profilePicture });
+        this.setState({ posts, profilePicture: profilePicture }, () => {
+          this.setState({ isLoadingProfile: false });
+        });
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => {
+        console.log(err.response);
+        this.setState({ isLoadingProfile: false });
+      });
   };
 
   async componentDidMount() {
@@ -99,6 +106,7 @@ class Profile extends Component {
         this.setState({ isLoading: true });
         const res = await axios.post(
           "https://api.cloudinary.com/v1_1/sastagram/image/upload",
+          // Kindly don't spam the url, if you know how to hide it, it'll be appreciated if you'd tell me
           data
         );
         const url = res.data.secure_url;
@@ -134,7 +142,6 @@ class Profile extends Component {
         this.setState({ isLoading: false });
       }
     });
-    // fetch("https://api.cloudinary.com/v1_1/sastagram/image/upload");
   };
 
   render() {
@@ -148,11 +155,17 @@ class Profile extends Component {
       image,
       profilePicture,
       isLoading,
+      isLoadingProfile,
     } = this.state;
 
     return (
       <div>
-        {isLoading && <h1>Please Wait while profile picture is updating</h1>}
+        {isLoading && (
+          <h1 style={{ color: "red" }}>
+            Please Wait patiently while profile picture is updating... (If the
+            image is high quality, response will be slower)
+          </h1>
+        )}
 
         <Details>
           <ProfilePicture>
@@ -183,6 +196,7 @@ class Profile extends Component {
           </ProfileDetails>
         </Details>
         <Posts>
+          {isLoadingProfile && <h3>Loading...</h3>}
           {posts.map((el) => {
             const { _id, caption, image } = el;
             return (

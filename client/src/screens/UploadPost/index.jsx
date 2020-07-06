@@ -58,6 +58,7 @@ export default class UploadPost extends Component {
         console.log(data);
         const res = await axios.post(
           "https://api.cloudinary.com/v1_1/sastagram/image/upload",
+          // Kindly don't spam the url, if you know how to hide it, it'll be appreciated if you'd tell me
           data
         );
         const url = res.data.secure_url;
@@ -116,7 +117,9 @@ export default class UploadPost extends Component {
     return (
       <Card>
         {isLoading && (
-          <h1>Uploading on free, bakwass server! Please wait patiently!</h1>
+          <h1 style={{ color: "red" }}>
+            Uploading on free, bakwass server! Please wait patiently!
+          </h1>
         )}
         {showToast && (
           <Toast text="You're an unwanted guest. Login again" type="danger" />
@@ -142,7 +145,7 @@ export default class UploadPost extends Component {
           />
           <Button
             type="submit"
-            disabled={!imageError && !captionError ? false : true}
+            disabled={!imageError && !captionError && !isLoading ? false : true}
           >
             Upload
           </Button>

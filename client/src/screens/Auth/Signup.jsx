@@ -119,7 +119,7 @@ class Signup extends Component {
         <Form method="post" autoComplete="off" onSubmit={this.onSubmit}>
           <Input
             type="text"
-            placeholder="Username"
+            placeholder="Username (Length > 4)"
             name="name"
             onChange={this.onChange}
             error={nameError}
