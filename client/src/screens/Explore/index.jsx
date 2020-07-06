@@ -51,44 +51,42 @@ export default class Explore extends Component {
 
   render() {
     const { isLoading, posts, hasMore, totalPosts } = this.state;
-
+    console.log(posts.length);
     return (
       <div>
         <h1>Explore Page</h1>
 
         {isLoading && <Loading> Loading.. </Loading>}
 
-        {posts.length > 1 && (
-          <InfiniteScroll
-            dataLength={totalPosts}
-            hasMore={hasMore}
-            next={this.fetchData}
-            loader={<Loading> Loading... </Loading>}
-            endMessage={<Loading> All posts done. </Loading>}
-          >
-            <Posts>
-              {posts.map((el) => {
-                const { _id, caption, image, username } = el;
+        <InfiniteScroll
+          dataLength={totalPosts}
+          hasMore={hasMore}
+          next={this.fetchData}
+          loader={<Loading> Loading... </Loading>}
+          endMessage={<Loading> All posts done. </Loading>}
+        >
+          <Posts>
+            {posts.map((el) => {
+              const { _id, caption, image, username } = el;
 
-                return (
-                  <Post key={_id}>
-                    <Link
-                      target="_blank"
-                      className="username"
-                      to={`/user/${username}`}
-                    >
-                      <PostTitle> {username} </PostTitle>
-                    </Link>
-                    <Link target="_blank" to={`/p/${_id}`}>
-                      <PostImage image={image} />
-                      <PostCaption>{caption}</PostCaption>
-                    </Link>
-                  </Post>
-                );
-              })}
-            </Posts>
-          </InfiniteScroll>
-        )}
+              return (
+                <Post key={_id}>
+                  <Link
+                    target="_blank"
+                    className="username"
+                    to={`/user/${username}`}
+                  >
+                    <PostTitle> {username} </PostTitle>
+                  </Link>
+                  <Link target="_blank" to={`/p/${_id}`}>
+                    <PostImage image={image} />
+                    <PostCaption>{caption}</PostCaption>
+                  </Link>
+                </Post>
+              );
+            })}
+          </Posts>
+        </InfiniteScroll>
       </div>
     );
   }
